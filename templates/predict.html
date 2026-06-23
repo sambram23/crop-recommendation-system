@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crop Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <style>
+    .loader {
+      border-top-color: transparent;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Sticky Navbar -->
+  <nav class="bg-green-700 text-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold">🌿 Crop Dashboard</div>
+      <div class="space-x-6 text-lg">
+        <a href="/" class="hover:text-gray-200 transition">Home</a>
+        <a href="/predict" class="hover:text-gray-200 transition font-semibold underline">Predict</a>
+        <a href="/models" class="hover:text-gray-200 transition">Models</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-3xl mx-auto py-10 px-4">
+    <h1 class="text-4xl font-bold text-green-700 mb-6 text-center animate__animated animate__fadeInDown">
+      🌾 Crop Prediction Web App
+    </h1>
+
+    <form action="/predict" method="post" onsubmit="showLoading()" class="bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeIn">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {% for field in ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall'] %}
+        <div>
+          <label class="block font-medium text-gray-700">{{ field.title() }}</label>
+          <input type="number" name="{{ field }}" step="any" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="mt-4">
+        <label class="block font-medium text-gray-700">Select Model</label>
+        <select name="model" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          {% for model in models %}
+          <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>
+            {{ model.replace('_', ' ').title() }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mt-6 text-center">
+        <button type="submit" name="mode" value="single" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+          Predict
+        </button>
+      </div>
+    </form>
+
+    <div id="loading" class="text-center mt-6 hidden">
+      <div class="loader ease-linear border-4 border-t-4 border-green-600 h-12 w-12 mx-auto animate-spin"></div>
+      <p class="mt-2">Predicting...</p>
+    </div>
+
+    {% if prediction %}
+    <div class="mt-10 bg-green-50 border border-green-300 rounded-lg p-6 shadow-md animate__animated animate__fadeInUp">
+      <h2 class="text-2xl font-semibold text-green-800">Predicted Crop: {{ prediction.title() }}</h2>
+      <p class="text-sm text-gray-600">Model Used: {{ selected_model.replace('_', ' ').title() }}</p>
+
+      {% if crop_image %}
+      <img src="{{ url_for('static', filename='images/' + crop_image) }}" alt="{{ prediction }}" class="mt-4 w-60 rounded-lg shadow-md" />
+      {% endif %}
+
+      {% if crop_description %}
+      <p class="mt-4 text-gray-700"><strong>Why it fits:</strong> {{ crop_description }}</p>
+      {% endif %}
+
+      {% if input_values %}
+      <div class="mt-6">
+        <h3 class="font-semibold text-lg">🌿 Input Summary:</h3>
+        <ul class="list-disc list-inside mt-2 text-sm">
+          {% for key, value in input_values.items() %}
+          <li><strong>{{ key.title() }}:</strong> {{ value }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function showLoading() {
+      document.getElementById("loading").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>

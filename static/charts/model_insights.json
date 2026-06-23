@@ -1,0 +1,51 @@
+[
+  {
+    "name": "knn",
+    "accuracy": "97.82%",
+    "details": "Knn model evaluated on scaled test set.",
+    "confusion": "knn_confusion.png",
+    "chart": null
+  },
+  {
+    "name": "svm_linear",
+    "accuracy": "97.45%",
+    "details": "Svm Linear model evaluated on scaled test set.",
+    "confusion": "svm_linear_confusion.png",
+    "chart": null
+  },
+  {
+    "name": "svm_rbf",
+    "accuracy": "98.73%",
+    "details": "Svm Rbf model evaluated on scaled test set.",
+    "confusion": "svm_rbf_confusion.png",
+    "chart": null
+  },
+  {
+    "name": "svm_poly",
+    "accuracy": "98.91%",
+    "details": "Svm Poly model evaluated on scaled test set.",
+    "confusion": "svm_poly_confusion.png",
+    "chart": null
+  },
+  {
+    "name": "decision_tree",
+    "accuracy": "98.55%",
+    "details": "Decision Tree model evaluated on scaled test set.",
+    "confusion": "decision_tree_confusion.png",
+    "chart": null
+  },
+  {
+    "name": "random_forest",
+    "accuracy": "97.27%",
+    "details": "Random Forest model evaluated on scaled test set.",
+    "confusion": "random_forest_confusion.png",
+    "chart": null
+  },
+  {
+    "name": "gradient_boosting",
+    "accuracy": "99.45%",
+    "details": "Gradient Boosting model evaluated on scaled test set.",
+    "confusion": "gradient_boosting_confusion.png",
+    "chart": null
+  }
+]
