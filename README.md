@@ -1,98 +1,189 @@
+# 🌾 AI-Based Crop Recommendation System
 
-# 🌾 Crop Recommendation System
-
-This is a modern, animated, and interactive web application built with Flask that helps predict the best crop to grow based on various environmental features like soil nutrients, temperature, humidity, pH, and rainfall. It uses multiple machine learning models and provides an insights dashboard with interactive charts.
+An intelligent web application that recommends the most suitable crop based on soil nutrients and environmental conditions using Machine Learning algorithms. The system analyzes agricultural parameters and predicts the best crop to support smart farming and improve agricultural productivity.
 
 ---
 
 ## 🚀 Features
 
-- 🔍 Predict crop using models like KNN, SVM (Linear, RBF, Poly), Decision Tree, Random Forest, and Gradient Boosting.
-- 📊 View accuracy and confusion matrix for each model.
-- 🌱 Visualize data distributions and relationships (violin plots, bubble charts, heatmaps).
-- 🧠 Crop insights with images and reasons for prediction.
-- ✨ Futuristic UI with TailwindCSS and Animate.css.
+- 🌱 Crop recommendation based on N, P, K, temperature, humidity, pH, and rainfall.
+- 🤖 Multiple Machine Learning models for prediction.
+- 📊 Model performance comparison and evaluation.
+- 📈 Interactive data visualization dashboard.
+- 🧠 Agricultural insights generated from dataset analysis.
+- 🎨 Modern and responsive user interface.
+- ⚡ Fast and accurate crop prediction.
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Prediction Page
+
+![Prediction Page](screenshots/predict.png)
+
+### Model Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Prediction Result
+
+![Result](screenshots/result.png)
 
 ---
 
 ## 🧩 Project Structure
 
-```
-├── app.py                      # Main Flask application
-├── crop_info.py               # Crop details with image and description
-├── train_model.py             # Model training script
-├── generate_insights.py       # Data visualization + insight generation
-├── requirements.txt           # Python dependencies
-├── model/                     # Saved ML models and scaler
+```text
+├── app.py
+├── crop_info.py
+├── generate_insights.py
+├── README.md
+├── .gitignore
+│
 ├── data/
-│   └── data.csv               # Dataset used for training and insights
+│   └── data.csv
+│
+├── model/
+│   ├── train_model.py
+│   ├── knn.pkl
+│   ├── random_forest.pkl
+│   ├── scaler.pkl
+│   └── trained model files
+│
 ├── static/
-│   ├── charts/                # Generated HTML/PNG visual charts
-│   └── images/                # Crop images for prediction display
+│   ├── charts/
+│   └── images/
+│
 └── templates/
-    ├── home.html              # Landing page
-    ├── predict.html           # Prediction form & results
-    └── models.html            # Models comparison + insights dashboard
+    ├── home.html
+    ├── predict.html
+    └── models.html
 ```
 
 ---
 
 ## ⚙️ Setup Instructions
 
-1. **Clone the repository**
+### 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/rahulgowdaa/crop-recommendation-app.git>
-cd crop-app
+git clone https://github.com/sambram23/crop-recommendation-system.git
+cd crop-recommendation-system
 ```
 
-2. **Create a virtual environment**
+### 2. Create a Virtual Environment
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # on Windows: venv\Scripts\activate
+python -m venv venv
 ```
 
-3. **Install dependencies**
+### 3. Activate Virtual Environment
+
+#### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+#### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Generate models and insights**
+### 5. Train the Models
 
 ```bash
-python train_model.py
+python model/train_model.py
+```
+
+### 6. Generate Insights
+
+```bash
 python generate_insights.py
 ```
 
-5. **Run the Flask app**
+### 7. Run the Application
 
 ```bash
 python app.py
 ```
 
-6. **Open in your browser**
-```
+### 8. Open in Browser
+
+```text
 http://localhost:5000
 ```
 
 ---
 
-## 📌 Tech Stack
+## 📊 Input Parameters
 
-- Python + Flask
-- Tailwind CSS + Animate.css
-- scikit-learn + pandas + matplotlib + seaborn + plotly
+The prediction model uses:
+
+- Nitrogen (N)
+- Phosphorus (P)
+- Potassium (K)
+- Temperature
+- Humidity
+- pH Level
+- Rainfall
 
 ---
 
-## 🙌 Author
+## 🤖 Machine Learning Models
 
-Developed with ❤️ for modern agriculture and data science education.
+- K-Nearest Neighbors (KNN)
+- Support Vector Machine (Linear)
+- Support Vector Machine (RBF)
+- Support Vector Machine (Polynomial)
+- Decision Tree
+- Random Forest
+- Gradient Boosting
+
+---
+
+## 🎯 Objectives
+
+- Assist farmers in selecting suitable crops.
+- Improve agricultural decision-making using Machine Learning.
+- Provide visual insights into agricultural datasets.
+- Demonstrate the practical application of AI in agriculture.
+
+---
+
+## 🛠️ Tech Stack
+
+- Python
+- Flask
+- Scikit-Learn
+- Pandas
+- NumPy
+- Plotly
+- Matplotlib
+- HTML
+- CSS
+- Tailwind CSS
+
+---
+
+## 🌐 Repository
+
+https://github.com/sambram23/crop-recommendation-system
 
 ---
 
 ## 📜 License
 
-This project is open-source and available under the MIT License.
+This project is intended for educational, research, and learning purposes.
